@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akash Sharma — SEO Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #888680;
+    --accent: #c8f060;
+    --accent2: #60c8f0;
+    --accent3: #f0a060;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  section[id] { scroll-margin-top: 80px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent); color: #0a0a0a;
+    padding: 9px 20px; border-radius: 6px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 70% 50%, rgba(200,240,96,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 400px at 20% 80%, rgba(96,200,240,0.05) 0%, transparent 70%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200,240,96,0.1); border: 1px solid rgba(200,240,96,0.2);
+    color: var(--accent); padding: 6px 14px; border-radius: 100px;
+    font-size: 13px; font-weight: 500; margin-bottom: 32px;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 800; line-height: 1.0;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+  }
+  h1 .accent { color: var(--accent); }
+  h1 .stroke {
+    -webkit-text-stroke: 1px rgba(240,237,232,0.3);
+    color: transparent;
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--muted); max-width: 540px;
+    line-height: 1.7; margin-bottom: 48px; font-weight: 300;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #0a0a0a;
+    padding: 14px 28px; border-radius: 8px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,240,96,0.3); }
+  .btn-ghost {
+    border: 1px solid var(--border2); color: var(--text);
+    padding: 14px 28px; border-radius: 8px;
+    font-weight: 500; font-size: 15px; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-ghost:hover { background: var(--bg3); border-color: var(--border2); }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: flex; gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    margin: 0 48px 80px;
+    background: var(--bg2);
+  }
+  .stat-item {
+    flex: 1; padding: 24px 28px;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: var(--bg3); }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px; font-weight: 800;
+    color: var(--accent); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-desc { font-size: 13px; color: var(--muted); }
+
+  /* SECTIONS */
+  section { padding: 80px 48px; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+  }
+
+  /* WORK */
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .work-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px;
+    transition: all 0.3s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .work-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: var(--card-accent, var(--accent));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .work-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .work-card:hover::before { opacity: 1; }
+  .work-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .work-domain { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+  .work-period { font-size: 12px; color: var(--muted); }
+  .work-badge {
+    font-size: 11px; font-weight: 600; padding: 4px 10px;
+    border-radius: 100px; white-space: nowrap;
+  }
+  .work-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+  .ws { background: var(--bg3); border-radius: 8px; padding: 10px 8px; text-align: center; }
+  .ws-val { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; line-height: 1; margin-bottom: 2px; }
+  .ws-key { font-size: 10px; color: var(--muted); }
+  .work-note { margin-top: 16px; font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* Badge colors */
+  .b-legal   { background: rgba(138,127,220,0.15); color: #b0a8ef; }
+  .b-real    { background: rgba(240,160,96,0.15);  color: #f0c080; }
+  .b-edu     { background: rgba(96,200,150,0.15);  color: #60c896; }
+  .b-sports  { background: rgba(150,210,96,0.15);  color: #a0d060; }
+  .b-int     { background: rgba(96,200,240,0.15);  color: var(--accent2); }
+  .b-int-flag { background: rgba(96,200,240,0.15); color: var(--accent2); }
+
+  /* SKILLS */
+  .skills-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .skill-group h3 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+  .skill-list { display: flex; flex-direction: column; gap: 12px; }
+  .skill-item { display: flex; align-items: center; gap: 12px; }
+  .skill-name { font-size: 14px; font-weight: 500; min-width: 160px; }
+  .skill-bar-wrap { flex: 1; height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+  .skill-bar { height: 100%; border-radius: 2px; background: var(--accent); animation: growBar 1.2s ease forwards; transform-origin: left; }
+  @keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .skill-pct { font-size: 12px; color: var(--muted); min-width: 36px; text-align: right; }
+
+  /* INDUSTRIES */
+  .industries { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 0; }
+  .ind-tag {
+    padding: 10px 20px; border-radius: 8px;
+    border: 1px solid var(--border2);
+    font-size: 14px; font-weight: 500;
+    background: var(--bg2);
+    transition: all 0.2s;
+  }
+  .ind-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(200,240,96,0.05); }
+
+  /* CONTACT */
+  .contact-wrap {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 20px; padding: 56px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .contact-wrap::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(200,240,96,0.04) 0%, transparent 70%);
+  }
+  .contact-wrap h2 { margin-bottom: 16px; }
+  .contact-sub { font-size: 17px; color: var(--muted); max-width: 480px; margin: 0 auto 40px; }
+  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 24px; border-radius: 8px;
+    text-decoration: none; font-weight: 500; font-size: 15px;
+    border: 1px solid var(--border2);
+    color: var(--text); background: var(--bg3);
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-link.primary { background: var(--accent); color: #0a0a0a; border-color: var(--accent); }
+  .contact-link.primary:hover { opacity: 0.88; color: #0a0a0a; }
+
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted); font-size: 13px;
+  }
+
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(24px); animation: fadeUp 0.7s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: none; } }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.25s; }
+  .d3 { animation-delay: 0.4s; }
+  .d4 { animation-delay: 0.55s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero, section { padding-left: 20px; padding-right: 20px; }
+    .stats-bar { margin: 0 20px 60px; flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat-item:last-child { border-bottom: none; }
+    .work-grid { grid-template-columns: 1fr; }
+    .skills-wrap { grid-template-columns: 1fr; }
+    .contact-wrap { padding: 36px 24px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Akash Sharma<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag fade-in d1">Available for freelance projects</div>
+    <h1 class="fade-in d2">
+      SEO that<br>
+      <span class="accent">actually</span><br>
+      <span class="stroke">ranks.</span>
+    </h1>
+    <p class="hero-sub fade-in d3">
+      I'm Akash Sharma — an SEO specialist with 7 years of experience helping businesses in India, UK, and UAE grow their organic traffic, rankings, and revenue.
+    </p>
+    <div class="hero-ctas fade-in d4">
+      <a href="#work" class="btn-primary">View My Work</a>
+      <button onclick="openAudit()" class="btn-ghost" style="border:1px solid rgba(255,255,255,0.14);cursor:pointer;font-family:'DM Sans',sans-serif;color:#f0ede8;background:transparent;font-size:15px;font-weight:500;padding:14px 28px;border-radius:8px;transition:all 0.2s;">Get a Free Audit</button>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">7+</div>
+    <div class="stat-desc">Years of SEO experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">7</div>
+    <div class="stat-desc">Major brands worked with</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">76K+</div>
+    <div class="stat-desc">Monthly traffic achieved</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5</div>
+    <div class="stat-desc">Industries covered</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-desc">Countries served</div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-label">Selected Work</div>
+  <h2>Brands I've grown<br>with SEO</h2>
+
+  <div class="work-grid">
+
+    <!-- Enterslice -->
+    <div class="work-card" style="--card-accent: #8a7fdc;">
+      <div class="work-card-top">
+        <div>
+          <div class="work-domain">enterslice.com</div>
+          <div class="work-period">2021 – 2023 · Legal & Finance</div>
+        </div>
+        <span class="work-badge b-legal">Legal</span>
+      </div>
+      <div class="work-stats">
+        <div class="ws"><div class="ws-val" style="color:#b0a8ef">76.2K</div><div class="ws-key">Monthly traffic</div></div>
+        <div class="ws"><div class="ws-val" style="color:#b0a8ef">16.9K</div><div class="ws-key">Keywords ranked</div></div>
+        <div class="ws"><div class="ws-val" style="color:#b0a8ef">DR 56</div><div class="ws-key">Domain rating</div></div>
+      </div>
+      <p class="work-note">One of India's leading legal & compliance platforms. Worked on technical SEO, content strategy, and link building to grow organic presence at national scale.</p>
+    </div>
+
+    <!-- Corpbiz -->
+    <div class="work-card" style="--card-accent: #8a7fdc;">
+      <div class="work-card-top">
+        <div>
+          <div class="work-domain">corpbiz.io</div>
+          <div class="work-period">2021 – 2023 · Business Services</div>
+        </div>
+        <span class="work-badge b-legal">Legal</span>
+      </div>
+      <div class="work-stats">
+        <div class="ws"><div class="ws-val" style="color:#b0a8ef">39.5K</div><div class="ws-key">Monthly traffic</div></div>
+        <div class="ws"><div class="ws-val" style="color:#b0a8ef">12.2K</div><div class="ws-key">Keywords ranked</div></div>
+        <div class="ws"><div class="ws-val" style="color:#b0a8ef">DR 52</div><div class="ws-key">Domain rating</div></div>
+      </div>
+      <p class="work-note">India's top platform for tax, trademark, MCA & compliance services. Delivered consistent organic growth through on-page optimization and structured content planning.</p>
+    </div>
+
+    <!-- Ramagya Sports -->
+    <div class="work-card" style="--card-accent: #a0d060;">
+      <div class="work-card-top">
+        <div>
+          <div class="work-domain">ramagya sports academy</div>
+          <div class="work-period">2023 – 2024 · Sports & Education</div>
+        </div>
+        <span class="work-badge b-sports">Sports</span>
+      </div>
+      <div class="work-stats">
+        <div class="ws"><div class="ws-val" style="color:#a0d060">4.2K</div><div class="ws-key">Monthly traffic</div></div>
+        <div class="ws"><div class="ws-val" style="color:#a0d060">421</div><div class="ws-key">Keywords ranked</div></div>
+        <div class="ws"><div class="ws-val" style="color:#a0d060">DR 28</div><div class="ws-key">Domain rating</div></div>
+      </div>
+      <p class="work-note">Best sports academy in Noida. Built local SEO presence from ground up, increasing organic discovery for admissions and program enquiries.</p>
+    </div>
+
+    <!-- Ramagya School -->
+    <div class="work-card" style="--card-accent: #60c896;">
+      <div class="work-card-top">
+        <div>
+          <div class="work-domain">ramagya school</div>
+          <div class="work-period">2023 – 2024 · Education</div>
+        </div>
+        <span class="work-badge b-edu">Education</span>
+      </div>
+      <div class="work-stats">
+        <div class="ws"><div class="ws-val" style="color:#60c896">7.8K</div><div class="ws-key">Monthly traffic</div></div>
+        <div class="ws"><div class="ws-val" style="color:#60c896">1,000+</div><div class="ws-key">Keywords ranked</div></div>
+        <div class="ws"><div class="ws-val" style="color:#60c896">DR 37</div><div class="ws-key">Domain rating</div></div>
+      </div>
+      <p class="work-note">Leading school in NCR. Drove organic visibility for admissions, events, and academic programs through targeted content and local SEO strategies.</p>
+    </div>
+
+    <!-- InStyle Direct -->
+    <div class="work-card" style="--card-accent: #60c8f0; grid-column: span 2;">
+      <div class="work-card-top">
+        <div>
+          <div class="work-domain">instyledirect.com &amp; instyledirect.ae</div>
+          <div class="work-period">2024 – Present · Interior Design &amp; Furnishing · 🇬🇧 UK + 🇦🇪 UAE</div>
+        </div>
+        <span class="work-badge b-int">International</span>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:500;">🇬🇧 UK Site — instyledirect.com</div>
+          <div class="work-stats">
+            <div class="ws"><div class="ws-val" style="color:#60c8f0">395K</div><div class="ws-key">Impressions (3mo)</div></div>
+            <div class="ws"><div class="ws-val" style="color:#60c8f0">2.53K</div><div class="ws-key">Clicks (3mo)</div></div>
+            <div class="ws"><div class="ws-val" style="color:#60c8f0">218</div><div class="ws-key">Keywords ranked</div></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:500;">🇦🇪 UAE Site — instyledirect.ae (New)</div>
+          <div class="work-stats">
+            <div class="ws"><div class="ws-val" style="color:#60c8f0">15.7K</div><div class="ws-key">Impressions (3mo)</div></div>
+            <div class="ws"><div class="ws-val" style="color:#60c8f0">238</div><div class="ws-key">Clicks (3mo)</div></div>
+            <div class="ws"><div class="ws-val" style="color:#60c8f0">1.5%</div><div class="ws-key">CTR</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="work-note" style="margin-top:16px;">Premium home furnishing & interior design brand operating in London (UK) and Dubai (UAE). Managing SEO for both markets simultaneously — UK site generating 3,95,000+ impressions in 3 months. UAE site launched recently and already gaining traction in Dubai's competitive interior design market.</p>
+    </div>
+
+    <!-- Buniyad -->
+    <div class="work-card" style="--card-accent: #f0c080;">
+      <div class="work-card-top">
+        <div>
+          <div class="work-domain">buniyad.com</div>
+          <div class="work-period">2018 – 2021 · Real Estate</div>
+        </div>
+        <span class="work-badge b-real">Real Estate</span>
+      </div>
+      <div class="work-stats">
+        <div class="ws"><div class="ws-val" style="color:#f0c080">714</div><div class="ws-key">Monthly traffic</div></div>
+        <div class="ws"><div class="ws-val" style="color:#f0c080">203</div><div class="ws-key">Keywords ranked</div></div>
+        <div class="ws"><div class="ws-val" style="color:#f0c080">DR 13</div><div class="ws-key">Domain rating</div></div>
+      </div>
+      <p class="work-note">Buy & sell property in Noida Delhi NCR — commercial, residential & industrial. My first major SEO project, building organic presence for a competitive real estate market.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="section-label">Expertise</div>
+  <h2>What I bring<br>to your project</h2>
+  <div class="skills-wrap">
+    <div class="skill-group">
+      <h3>Core SEO Skills</h3>
+      <div class="skill-list">
+        <div class="skill-item">
+          <span class="skill-name">Technical SEO</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+          <span class="skill-pct">95%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">On-Page SEO</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+          <span class="skill-pct">95%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Keyword Research</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div>
+          <span class="skill-pct">92%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Link Building</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+          <span class="skill-pct">88%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Local SEO</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+          <span class="skill-pct">90%</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Tools & Automation</h3>
+      <div class="skill-list">
+        <div class="skill-item">
+          <span class="skill-name">Ahrefs / Semrush</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+          <span class="skill-pct">95%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Google Search Console</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+          <span class="skill-pct">95%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">AI SEO Automation</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Google Analytics 4</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+          <span class="skill-pct">88%</span>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">WordPress / CMS</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div>
+          <span class="skill-pct">82%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 56px;">
+    <div class="section-label" style="margin-bottom: 20px;">Industries</div>
+    <div class="industries">
+      <span class="ind-tag">⚖️ Legal & Finance</span>
+      <span class="ind-tag">🏠 Real Estate</span>
+      <span class="ind-tag">🎓 Education</span>
+      <span class="ind-tag">🏆 Sports</span>
+      <span class="ind-tag">🛋️ Interior Design</span>
+      <span class="ind-tag">🇬🇧 UK Market</span>
+      <span class="ind-tag">🇦🇪 UAE Market</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="section-label" style="margin-bottom: 12px;">Let's Work Together</div>
+    <h2>Ready to grow<br>your organic traffic?</h2>
+    <p class="contact-sub">I offer a free SEO audit for new clients. Let's find out why your website isn't ranking — and fix it.</p>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/akash-sharma-seo/" target="_blank" class="contact-link primary">
+        💼 Connect on LinkedIn
+      </a>
+      <a href="javascript:void(0)" onclick="window.location='mai'+'lto:akashaichharia'+'@gmail.com'" class="contact-link">
+        ✉️ akashaichharia@gmail.com
+      </a>
+      <a href="https://wa.me/919410097443" target="_blank" class="contact-link">
+        💬 +91 94100 97443
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Akash Sharma · SEO Specialist</div>
+  <div>Noida, India · Available for remote projects wor
+<!-- AUDIT MODAL -->
+<div id="auditModal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#111;border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:40px;max-width:480px;width:100%;position:relative;animation:fadeUp 0.3s ease forwards;">
+    <button onclick="closeAudit()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.08);border:none;color:#888;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;font-family:inherit;">✕</button>
+
+    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(200,240,96,0.1);border:1px solid rgba(200,240,96,0.2);color:#c8f060;padding:5px 12px;border-radius:100px;font-size:12px;font-weight:500;margin-bottom:20px;">Free SEO Audit</div>
+
+    <h3 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px;color:#f0ede8;">Let's audit your website</h3>
+    <p style="font-size:14px;color:#888;margin-bottom:28px;line-height:1.6;">Share your details — I'll personally review your site and send you a free SEO report within 24 hours.</p>
+
+    <div id="auditForm">
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:500;color:#888;display:block;margin-bottom:6px;">Your Name *</label>
+        <input id="af-name" type="text" placeholder="Rahul Gupta" style="width:100%;background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;color:#f0ede8;font-size:14px;font-family:inherit;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8f060'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:500;color:#888;display:block;margin-bottom:6px;">Website URL *</label>
+        <input id="af-url" type="text" placeholder="https://yourwebsite.com" style="width:100%;background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;color:#f0ede8;font-size:14px;font-family:inherit;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8f060'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;font-weight:500;color:#888;display:block;margin-bottom:6px;">WhatsApp / Phone *</label>
+        <input id="af-phone" type="text" placeholder="+91 98765 43210" style="width:100%;background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;color:#f0ede8;font-size:14px;font-family:inherit;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#c8f060'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="font-size:12px;font-weight:500;color:#888;display:block;margin-bottom:6px;">Main Problem (optional)</label>
+        <select id="af-issue" style="width:100%;background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;color:#888;font-size:14px;font-family:inherit;outline:none;cursor:pointer;">
+          <option value="">Select your issue...</option>
+          <option value="low-traffic">Low organic traffic</option>
+          <option value="no-ranking">Website not ranking on Google</option>
+          <option value="competitor">Competitors ranking above me</option>
+          <option value="new-site">New website, need SEO setup</option>
+          <option value="penalty">Google penalty / traffic drop</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <button onclick="submitAudit()" style="width:100%;background:#c8f060;color:#0a0a0a;border:none;border-radius:8px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        Request Free Audit →
+      </button>
+      <p style="text-align:center;font-size:12px;color:#555;margin-top:12px;">I'll respond within 24 hours on WhatsApp</p>
+    </div>
+
+    <div id="auditSuccess" style="display:none;text-align:center;padding:20px 0;">
+      <div style="font-size:48px;margin-bottom:16px;">✅</div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#c8f060;margin-bottom:10px;">Request Received!</h3>
+      <p style="font-size:14px;color:#888;line-height:1.6;">Thank you! I'll review your website and send you a free SEO audit report on WhatsApp within 24 hours.</p>
+      <button onclick="closeAudit()" style="margin-top:24px;background:rgba(200,240,96,0.1);border:1px solid rgba(200,240,96,0.3);color:#c8f060;border-radius:8px;padding:10px 24px;cursor:pointer;font-size:14px;font-family:inherit;">Close</button>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function openAudit() {
+  var m = document.getElementById('auditModal');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeAudit() {
+  var m = document.getElementById('auditModal');
+  m.style.display = 'none';
+  document.body.style.overflow = '';
+  document.getElementById('auditForm').style.display = 'block';
+  document.getElementById('auditSuccess').style.display = 'none';
+  document.getElementById('af-name').value = '';
+  document.getElementById('af-url').value = '';
+  document.getElementById('af-phone').value = '';
+}
+function submitAudit() {
+  var name = document.getElementById('af-name').value.trim();
+  var url = document.getElementById('af-url').value.trim();
+  var phone = document.getElementById('af-phone').value.trim();
+  if (!name || !url || !phone) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  var issue = document.getElementById('af-issue').value;
+  var msg = 'Hi Akash! I need a free SEO audit.%0AName: ' + encodeURIComponent(name) + '%0AWebsite: ' + encodeURIComponent(url) + '%0APhone: ' + encodeURIComponent(phone) + (issue ? '%0AIssue: ' + encodeURIComponent(issue) : '');
+  window.open('https://wa.me/919410097443?text=' + msg, '_blank');
+  document.getElementById('auditForm').style.display = 'none';
+  document.getElementById('auditSuccess').style.display = 'block';
+}
+document.getElementById('auditModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAudit();
+});
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var id = this.getAttribute('href');
+    var
